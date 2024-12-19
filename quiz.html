@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأسئلة</title>
+    <script>
+        let countdown = 90 * 60;
+
+        function startTimer() {
+            const timerElement = document.getElementById("quizTimer");
+            const submitButton = document.getElementById("submitButton");
+
+            const interval = setInterval(() => {
+                const minutes = Math.floor(countdown / 60);
+                const seconds = countdown % 60;
+
+                timerElement.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+                countdown--;
+
+                if (countdown === 45 * 60) {
+                    submitButton.disabled = false;
+                }
+
+                if (countdown < 0) {
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+    </script>
+</head>
+<body onload="startTimer();">
+    <h1>الأسئلة</h1>
+    <p>الوقت المتبقي: <span id="quizTimer">90:00</span></p>
+    <form>
+        <h3>أسئلة صح أو خطأ</h3>
+        <!-- 10 أسئلة صح أو خطأ -->
+        <div>
+            <p>السؤال 1</p>
+            <label><input type="radio" name="q1" value="true">صح</label>
+            <label><input type="radio" name="q1" value="false">خطأ</label>
+        </div>
+        <!-- تكرار الأسئلة -->
+
+        <h3>اختر الإجابة الصحيحة</h3>
+        <!-- 10 أسئلة اختيار من متعدد -->
+        <div>
+            <p>السؤال 11</p>
+            <label><input type="radio" name="q11" value="a">إجابة 1</label>
+            <label><input type="radio" name="q11" value="b">إجابة 2</label>
+            <label><input type="radio" name="q11" value="c">إجابة 3</label>
+            <label><input type="radio" name="q11" value="d">إجابة 4</label>
+        </div>
+        <!-- تكرار الأسئلة -->
+
+        <h3>مطابقة القوائم</h3>
+        <!-- مطابقة القوائم -->
+        <div>
+            <p>السؤال 21</p>
+            <select>
+                <option>العنصر 1</option>
+                <!-- عناصر إضافية -->
+            </select>
+        </div>
+        <!-- تكرار القوائم -->
+
+        <button id="submitButton" disabled>تسليم</button>
+    </form>
+</body>
+</html>

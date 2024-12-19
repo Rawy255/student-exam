@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الانتظار</title>
+    <script>
+        let countdown = 15;
+
+        function startCountdown() {
+            const timerElement = document.getElementById("timer");
+            const startButton = document.getElementById("startButton");
+
+            const interval = setInterval(() => {
+                timerElement.textContent = countdown;
+                countdown--;
+
+                if (countdown < 0) {
+                    clearInterval(interval);
+                    startButton.disabled = false;
+                }
+            }, 1000);
+        }
+
+        function loadStudentID() {
+            const studentID = localStorage.getItem("studentID");
+            document.getElementById("studentIDDisplay").textContent = studentID;
+        }
+    </script>
+</head>
+<body onload="loadStudentID(); startCountdown();">
+    <h1>صفحة الانتظار</h1>
+    <p>رقمك الجامعي: <span id="studentIDDisplay"></span></p>
+    <p>الوقت المتبقي: <span id="timer">15</span> ثانية</p>
+    <button id="startButton" disabled onclick="window.location.href='quiz.html'">البدء</button>
+</body>
+</html>

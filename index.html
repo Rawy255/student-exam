@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <script>
+        function formatStudentID(input) {
+            let value = input.value.replace(/-/g, '');
+            if (value.length > 2) value = value.slice(0, 2) + '-' + value.slice(2);
+            if (value.length > 6) value = value.slice(0, 5) + '-' + value.slice(5);
+            if (value.length > 9) value = value.slice(0, 8) + '-' + value.slice(8);
+            input.value = value.slice(0, 11);
+        }
+
+        function submitID() {
+            const studentID = document.getElementById("studentID").value;
+            localStorage.setItem("studentID", studentID);
+            window.location.href = "waiting.html";
+        }
+    </script>
+</head>
+<body>
+    <h1>تسجيل الدخول</h1>
+    <label for="studentID">الرقم الجامعي:</label>
+    <input type="text" id="studentID" oninput="formatStudentID(this)" maxlength="11" placeholder="XX-XXX-XXX">
+    <button onclick="submitID()">دخول</button>
+</body>
+</html>
